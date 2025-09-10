@@ -1,0 +1,8 @@
+tqdm==4.67.1
+scikit-learn==1.7.1
+pandas==2.3.2
+xgboost==3.0.5
+typing_extensions==4.15.0
+tinydb==4.8.2
+autogluon.tabular[fastai]==1.4.0
+autogluon.tabular[lightgbm]==1.4.0

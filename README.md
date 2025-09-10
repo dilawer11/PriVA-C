@@ -84,11 +84,6 @@ This will create a feature file and we can then train the classifier and evaluat
 python3 src/scripts/SpyingTrain.py -i data/dataset_name/ -s DD-MMM-YYYY_HHMM
 ```
 
-## Simulating Defenses (TO BE ADDED)
-
-To simulate a defense on a dataset we use plain traffic windows and create a new windows files.
-
-## Prototype (TO BE ADDED)
 
 ## Contact
 For questions or issues, please email authors or open an issue on GitHub.

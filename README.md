@@ -1,12 +1,21 @@
-# PriVA-C: Artifact README
+# Artifact Appendix
 
-This repository contains the artifact for the paper:
+Paper title: **PriVA-C: Defending Voice Assistants from Fingerprinting Attacks**
 
-**PriVA-C: Defending Voice Assistants from Fingerprinting Attacks**  
-Authors: Dilawer Ahmed, Aafaq Sabir, Ahsan Zafar, Anupam Das 
-Conference/Journal: PETS, 2026
+Requested Badge(s):
+  - [x] **Available**
+  - [ ] **Functional**
+  - [ ] **Reproduced**
 
-## Setup
+## Description
+
+This repository contains the code used for processing datasets from our paper. This repository also contains the code to run Spying attack on the given datasets
+
+### Security/Privacy Issues and Ethical Concerns
+
+The attacks provided in this repository are a privacy attack on encrypted network traffic. Any usage on datasets not connected in controlled lab settings can potentially leak sensitive information
+
+## Requirements
 
 ### Hardware Requirements
 The setup has been tested using the following setup
@@ -15,7 +24,12 @@ The setup has been tested using the following setup
 2) RAM: 64GB
 3) CPU: 32cores
 4) GPU: 2x4090
-5) Software: Docker
+
+### Software Requirements
+
+1) Docker
+
+## Environment
 
 ### Docker Image Build
 
@@ -84,6 +98,9 @@ This will create a feature file and we can then train the classifier and evaluat
 python3 src/scripts/SpyingTrain.py -i data/dataset_name/ -s DD-MMM-YYYY_HHMM
 ```
 
+## Accessibility (Required for all badges)
+
+The datasets are available on our lab website. The code is available via GitHub
 
 ## Contact
 For questions or issues, please email authors or open an issue on GitHub.

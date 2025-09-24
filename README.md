@@ -9,7 +9,7 @@ Requested Badge(s):
 
 ## Description
 
-This repository contains the code used for processing datasets from our paper. This repository also contains the code to run Spying attack on the given datasets
+This repository contains the code used for processing datasets from our paper. This repository also contains the code to run Spying attack on the given datasets. Each dataset is initially in PCAP format captured through `tcpdump`. To enable easier processing we first convert it to CSV format removing extra items e.g contents of the packet (except DNS) as they are encrypted. Then we create time windows around each activity we want to fingerprint i.e voice commands. These windows can be of different lengths, however, in this work we consider 30 second windows. After extracting windows we need to extract features from the windows and finally we can train machine learning models on the extracted features. 
 
 ### Security/Privacy Issues and Ethical Concerns
 
@@ -40,6 +40,8 @@ docker build . -t privac
 ```
 
 ### Run the Docker Image
+
+Replace the /path/to/PriVA-C to the path to the PriVA-C folder
 
 ```bash
 docker run -e IOTBASE=/PriVA-C -e PYTHONPATH=/PriVA-C/src -v /path/to/PriVA-C:/PriVA-C -it privac bash
@@ -78,7 +80,7 @@ To convert the raw PCAP files to CSV run the following command inside the docker
 python3 src/scripts/PCAP2CSV.py -i data/dataset_name/
 ```
 
-After the PCAP files have been converted run the following command to create windows
+Since the dataset is captured in continous files of 30 minutes each we need to split it to create specific time windows around each activity (e.g 30s or 1 minute). So to create the windows we run the following command
 
 ```bash
 python3 src/scripts/CSV2Windows.py -i data/dataset_name/

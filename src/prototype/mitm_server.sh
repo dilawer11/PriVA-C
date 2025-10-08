@@ -1,0 +1,1 @@
+mitmdump --set stream_large_bodies=1 -p 8003

@@ -50,7 +50,10 @@ docker run -e IOTBASE=/PriVA-C -e PYTHONPATH=/PriVA-C/src -v /path/to/PriVA-C:/P
 
 ## Datasets
 
-The datasets can be accessed at the following link: https://privacy-datahub.csc.ncsu.edu/publication/ahmed-pets-2026/
+The datasets can be accessed at the following link: https://privacy-datahub.csc.ncsu.edu/publication/ahmed-pets-2026/.
+
+Datasets have been copied and backed up to Zenodo in case the first link is unavailable:
+https://doi.org/10.5281/zenodo.17268257
 
 ### Alexa SDK Dataset
 This dataset was collected using the Alexa SDK. It is the primary dataset used for Alexa evaluations
@@ -98,6 +101,37 @@ This will create a feature file and we can then train the classifier and evaluat
 
 ```bash
 python3 src/scripts/SpyingTrain.py -i data/dataset_name/ -s DD-MMM-YYYY_HHMM
+```
+
+## PriVA-C Prototype
+
+The code for PriVA-C prototype is provided in the directory `src/prototype`. To setup the prototype multiple devices are required. One which would serve as a client and other as a server. In addition `mitmproxy` is also required to handle the routing of traffic as the prototype only encodes and decodes the provided traffic to a specific TCP Port
+
+To install mitmproxy follow the instructions on https://www.mitmproxy.org.
+
+After installation we need to setup the parameters for privac. For now parameters are set directly in the main prototype file `src/prototype/privac_pt.py`.
+
+After setting the parameters or keeping the default ones we need to first bring up mitm proxies for server and client
+
+Run the `src/prototype/mitm_server.sh` on the server (Note this setup forwards all traffic and not for specific hosts). The port numbers can be configured in the files and commands but the overall flow should remain *Client Side mitmproxy* > *Client Side PriVA-C* > *Server Side PriVA-C* > *Server Side mitmproxy* 
+
+```bash
+sh src/prototype/mitm_server.sh
+```
+
+After this we can start the server side PriVA-C module using the following command
+```bash
+python3 src/prototype/privac_pt.py -m S -l 8002
+```
+
+We can then start the client side mitm on a different machine (or same for testing)
+```bash
+sh src/prototype/mitm_client.sh
+```
+
+Finally, we can start the client side prototype using the following command
+```bash
+python3 src/prototype/privac_pt.py -m C -l 8001 --forward-ip {ip_of_server} -f 8002
 ```
 
 ## Accessibility (Required for all badges)

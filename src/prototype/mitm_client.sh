@@ -1,0 +1,1 @@
+mitmproxy --mode upstream:http://localhost:8001 -p 8000 --ssl-insecure --set stream_large_bodies=1
